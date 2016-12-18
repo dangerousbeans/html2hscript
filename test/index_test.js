@@ -35,3 +35,11 @@ test('should output style attribute as an object', function(t) {
     t.end()
   })
 })
+
+
+test('it should output attributes in a normal looking hash, not as "attributes:"', function(t) {
+  parser('<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>', function(err, hscript) {
+    t.equals(hscript, 'h("a.dropdown-toggle", {"href":"#","role":"button","aria-haspopup":"true","aria-expanded":"false"},"dataset":{"toggle":"dropdown"}}, [ "Dropdown ", h("span.caret") ])', 'success')
+    t.end()
+  })
+})
